@@ -7,4 +7,5 @@ mod tests {
 }
 
 pub mod perf;
+pub mod searches;
 pub mod sorts;

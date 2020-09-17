@@ -7,7 +7,6 @@ pub fn insertion<T>(collection: &mut std::vec::Vec<T>, order: SortOrder) -> &std
 where
     T: std::cmp::Ord,
     T: std::clone::Clone,
-    T: std::fmt::Debug,
 {
     let cmp = match order {
         SortOrder::ASCENDING => std::cmp::Ordering::Greater,
@@ -22,6 +21,32 @@ where
             i -= 1;
         }
         collection[(i + 1) as usize] = key;
+    }
+    collection
+}
+
+pub fn selection<T>(collection: &mut std::vec::Vec<T>, order: SortOrder) -> &std::vec::Vec<T>
+where
+    T: std::cmp::Ord,
+    T: std::clone::Clone,
+{
+    let bottom = match order {
+        SortOrder::ASCENDING => std::cmp::Ordering::Less,
+        SortOrder::DESCENDING => std::cmp::Ordering::Greater,
+    };
+    for i in 0..collection.len() {
+        let mut smallest_index = i;
+        let mut smallest = collection[i].clone();
+        for j in i + 1..collection.len() {
+            let curr = &collection[j];
+            if curr.cmp(&smallest) == bottom {
+                smallest_index = j;
+                smallest = curr.clone();
+            }
+            let tmp = collection[i].clone();
+            collection[i] = smallest.clone();
+            collection[smallest_index] = tmp;
+        }
     }
     collection
 }

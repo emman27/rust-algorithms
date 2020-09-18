@@ -43,10 +43,10 @@ where
                 smallest_index = j;
                 smallest = curr.clone();
             }
-            let tmp = collection[i].clone();
-            collection[i] = smallest.clone();
-            collection[smallest_index] = tmp;
         }
+        let tmp = collection[i].clone();
+        collection[i] = smallest.clone();
+        collection[smallest_index] = tmp;
     }
     collection
 }

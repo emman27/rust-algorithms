@@ -11,6 +11,10 @@ fn empty_collection() {
         *super::selection(&mut v.clone(), SortOrder::ASCENDING),
         vec![] as std::vec::Vec<i32>
     );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::ASCENDING),
+        vec![] as std::vec::Vec<i32>
+    );
 }
 
 #[test]
@@ -22,6 +26,10 @@ fn sorted() {
     );
     assert_eq!(
         *super::selection(&mut v.clone(), SortOrder::ASCENDING),
+        vec![1, 2, 3]
+    );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::ASCENDING),
         vec![1, 2, 3]
     );
 }
@@ -37,6 +45,10 @@ fn unsorted() {
         *super::selection(&mut v.clone(), SortOrder::ASCENDING),
         vec![1, 2, 3]
     );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::ASCENDING),
+        vec![1, 2, 3]
+    );
 }
 
 #[test]
@@ -48,6 +60,10 @@ fn book() {
     );
     assert_eq!(
         *super::selection(&mut v.clone(), SortOrder::ASCENDING),
+        vec![1, 2, 3, 4, 5, 6]
+    );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::ASCENDING),
         vec![1, 2, 3, 4, 5, 6]
     );
 }
@@ -63,6 +79,10 @@ fn string() {
         *super::selection(&mut v.clone(), SortOrder::ASCENDING),
         vec!["a", "c", "x"]
     );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::ASCENDING),
+        vec!["a", "c", "x"]
+    );
 }
 
 #[test]
@@ -74,6 +94,10 @@ fn reversed() {
     );
     assert_eq!(
         *super::selection(&mut v.clone(), SortOrder::DESCENDING),
+        vec![6, 5, 4, 3, 2, 1]
+    );
+    assert_eq!(
+        *super::merge(&mut v.clone(), SortOrder::DESCENDING),
         vec![6, 5, 4, 3, 2, 1]
     );
 }
